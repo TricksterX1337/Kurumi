@@ -1,2 +1,2 @@
 # Kurumi 🎀
-~ # Some cool commands bot for Alice's support server.
+~ # Some cool commands Discord bot for Alice's support server.
