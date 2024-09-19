@@ -62,7 +62,7 @@ class afk(commands.Cog):
   @commands.Cog.listener()
   async def on_message(self, message):
 
-    if message.content.startswith('k!afk'):
+    if message.content.startswith('.afk'):
       return
       await self.client.process_commands(message)
 
