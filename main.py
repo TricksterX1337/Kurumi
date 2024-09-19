@@ -15,7 +15,7 @@ intents = discord.Intents.all()
 intents.messages = True
 DiscordWebSocket.identify = identify
 
-client = commands.AutoShardedBot(command_prefix='k!', intents=intents)
+client = commands.AutoShardedBot(command_prefix='.', intents=intents)
 
 @client.event
 async def on_ready():
