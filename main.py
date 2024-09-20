@@ -6,7 +6,6 @@ from websocket import identify
 from discord.gateway import DiscordWebSocket, _log
 from discord.ext.commands import Bot
 
-
 from cogs.afk import afk
 from cogs.purge import purge
 from cogs.snipe import snipe
