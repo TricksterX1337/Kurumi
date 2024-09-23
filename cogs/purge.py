@@ -51,7 +51,7 @@ class purge(commands.Cog):
             await ctx.channel.purge(limit=int(target))
         else:
             await ctx.channel.purge(check=lambda m: target in m.content, limit=amount)
-            await ctx.send(f'✅️ | Successfully cleared {amount} messages.', delete_after=5)
+        await ctx.send(f'✅️ | Successfully cleared {amount} messages.', delete_after=5)
     except:
                 await ctx.send('Invalid target or amount specified.', delete_after=5)
 
