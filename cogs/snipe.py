@@ -64,7 +64,7 @@ class snipe(commands.Cog):
 
             if deleted_message["reference"] and deleted_message["reference"].resolved:
                 replied_to = deleted_message["reference"].resolved.author
-                embed.add_field(name="**Replying to...**", value=f'[{deleted_message["reference"].resolved.author}(https://discord.com/users/{deleted_message["reference"].resolved.author.id})', inline=False)
+                embed.add_field(name="**Replying to...**", value=f'[{deleted_message["reference"].resolved.author}](https://discord.com/users/{deleted_message["reference"].resolved.author.id})', inline=False)
 
             await ctx.send(embed=embed)
 
