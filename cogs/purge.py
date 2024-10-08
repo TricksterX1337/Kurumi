@@ -35,8 +35,8 @@ class purge(commands.Cog):
   @commands.has_permissions(manage_messages=True)
   async def purge(self, ctx, target=None, amount: int = 100):
     try:
+        await ctx.message.delete()
         if target is None:
-            await ctx.message.delete()
             await ctx.channel.purge(limit=amount)
             await ctx.send(f'✅️ | Successfully cleared {amount} messages.', delete_after=5)
         elif target.lower() == 'bots':
