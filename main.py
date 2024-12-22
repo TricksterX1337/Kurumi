@@ -8,7 +8,6 @@ from discord.ext.commands import Bot
 
 
 from cogs.afk import afk
-from cogs.chan import chan
 from cogs.purge import purge
 from cogs.snipe import snipe
 
@@ -31,7 +30,6 @@ async def on_ready():
 
 async def cog_loader():
   await client.add_cog(afk(client))
-  await client.add_cog(chan(client))
   await client.add_cog(snipe(client))
   await client.add_cog(purge(client)) 
 
