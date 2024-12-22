@@ -11,12 +11,17 @@ class snipe(commands.Cog):
     async def on_message_delete(self, message):
         if message.author.bot:
             return
+
+        # Capture image URLs if any attachments are present
+        image_urls = [attachment.url for attachment in message.attachments]
+
         self.deleted_messages[message.channel.id] = {
             "author": message.author,
-            "content": message.content,
+            "content": message.content or "No text content.",
             "timestamp": message.created_at,
             "reference": message.reference,
-            "channel": message.channel
+            "channel": message.channel,
+            "images": image_urls  # Store image URLs
         }
 
     @commands.Cog.listener()
@@ -53,7 +58,7 @@ class snipe(commands.Cog):
                 return
 
             embed = discord.Embed(
-              title=f"🚮** Message sent by {deleted_message['author'].mention} deleted in** {deleted_message['channel'].mention}",
+                title=f"🚮 **Message sent by {deleted_message['author'].mention} deleted in** {deleted_message['channel'].mention}",
                 description=f"**__Content__:**\n{deleted_message['content']}",
                 timestamp=deleted_message["timestamp"],
                 color=discord.Color.teal()
@@ -64,7 +69,11 @@ class snipe(commands.Cog):
 
             if deleted_message["reference"] and deleted_message["reference"].resolved:
                 replied_to = deleted_message["reference"].resolved.author
-                embed.add_field(name="**Replying to...**", value=f'[{deleted_message["reference"].resolved.author}](https://discord.com/users/{deleted_message["reference"].resolved.author.id})', inline=False)
+                embed.add_field(name="**Replying to...**", value=f'[{replied_to}](https://discord.com/users/{replied_to.id})', inline=False)
+
+            # Add image to embed if present
+            if deleted_message["images"]:
+                embed.set_image(url=deleted_message["images"][0])  # Show the first image
 
             await ctx.send(embed=embed)
 
@@ -79,7 +88,7 @@ class snipe(commands.Cog):
                 return
 
             embed = discord.Embed(
-              title=f"♻️ **Message edited by {edited_message['author'].mention} in** {edited_message['channel'].mention}",
+                title=f"♻️ **Message edited by {edited_message['author'].mention} in** {edited_message['channel'].mention}",
                 description=f"**__Before__:**\n{edited_message['before']}\n\n**__After__:**\n{edited_message['after']}",
                 timestamp=edited_message["timestamp"],
                 color=discord.Color.teal()
@@ -90,4 +99,4 @@ class snipe(commands.Cog):
             await ctx.send(embed=embed)
 
 def setup(client):
-  client.add_cog(snipe(client))
+    client.add_cog(snipe(client))
