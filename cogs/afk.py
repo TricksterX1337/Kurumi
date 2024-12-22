@@ -91,7 +91,7 @@ class afk(commands.Cog):
             duration = format_duration(days, hours, minutes, seconds)
 
             await message.reply(
-                f"**Welcome Back <@{user_id}>!** | You were away for {duration}.",
+                f"**Welcome Back <@{user_id}>!** | You were away for {duration}!",
                 mention_author=False
             )
 
