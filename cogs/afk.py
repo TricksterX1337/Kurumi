@@ -105,7 +105,7 @@ class afk(commands.Cog):
                 reason = afk_info['reason']
 
                 await message.reply(
-                    f'**{mention.display_name}** is AFK: {reason}. They have been AFK since <t:{int(afk_time)}:R>.',
+                    f'**{mention.display_name}** went afk <t:{int(afk_time)}:R>: {reason}',
                     mention_author=False
                 )
 
