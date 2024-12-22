@@ -38,7 +38,7 @@ class chan(commands.Cog):
         await self.toggle_channel_lock(channel, lock=True)
 
         # Send a message indicating the channel is locked (but don't reply to the command directly)
-        await channel.send(f"✅️ | {channel.mention} has been locked for everyone role.", mention_author=False)
+        await ctx.reply(f"✅️ | {channel.mention} has been locked for everyone role.", mention_author=False)
 
         if lock_time:
             self.locks[channel.id] = lock_time
